@@ -1,7 +1,9 @@
-import { UserId } from './user.type';
+import { Id } from "./id.type";
 
 export interface Content {
-    id: string
-    text: string
-    likes: UserId[]
+    id: Id
+    title: string
+    description: string
+    imageUrl: string
+    likes: Id[]
 }

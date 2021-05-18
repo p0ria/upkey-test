@@ -1,0 +1,46 @@
+:host {
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.2);
+    overflow: hidden;
+    border-radius: 0 0 var(--spacing-base) var(--spacing-base);
+
+    img {
+        width: 100%;
+        height: 150px;
+        max-width: 100%;
+    }
+
+    .content {
+        padding: calc(2 * var(--spacing-base)) calc(4 * var(--spacing-base));
+
+        .info {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+
+            .title {
+                text-transform: capitalize;
+                font-size: 1rem;
+                margin: 0;
+            }
+
+            .like {
+                color: rgba(0, 0, 0, 0.2);
+                &.active {
+                    color: red;
+                }
+            }
+        }
+
+        .like-count {
+            opacity: 0.7;
+            margin-bottom: var(--spacing-base);
+            font-weight: bold;
+        }
+
+        .description {
+            opacity: 0.6;
+        }
+    }
+}

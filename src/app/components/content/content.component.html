@@ -1,0 +1,14 @@
+<img [src]="content.imageUrl" alt="">
+<div class="content">
+    <div class="info">
+        <h6 class="title">{{content.title}}</h6>
+        <button class="like" [class.active]="isLiked$ | async" mat-icon-button aria-label="like button"
+            (click)="toggleLike()">
+            <mat-icon><span class="material-icons-outlined">
+                    favorite
+                </span></mat-icon>
+        </button>
+    </div>
+    <div class="like-count">{{content.likes.length}} likes</div>
+    <p class="description">{{content.description}}</p>
+</div>

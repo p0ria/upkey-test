@@ -1,3 +1,4 @@
+import { AppEffects } from './../../state/app.effects';
 import { NgModule, Optional, SkipSelf } from '@angular/core';
 import { EffectsModule } from '@ngrx/effects';
 import { StoreModule as NgrxStoreModule } from "@ngrx/store";
@@ -10,7 +11,7 @@ import { rootReducer } from './root.reducer';
   imports: [
     NgrxStoreModule.forRoot(rootReducer),
     EffectsModule.forRoot([
-
+      AppEffects
     ]),
     environment.production
       ? []

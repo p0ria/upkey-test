@@ -1,13 +1,11 @@
 import { Feed } from './feed.type';
-import { Content } from "./content.type";
-
-export type UserId = string | number
+import { Id } from "./id.type";
 
 export interface User {
-    id: UserId
+    id: Id
     name: string
     imageUrl: string
-    contents: Content[]
-    firends: User[]
+    contents: Id[]
+    friends: Id[]
     feeds: Feed[]
 }

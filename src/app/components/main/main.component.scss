@@ -1,0 +1,14 @@
+:host {
+    display: flex;
+    flex-direction: column;
+    --app-bar-height: 52px;
+
+    app-app-bar {
+        flex: 0 0 var(--app-bar-height);
+    }
+
+    .content {
+        flex: 1 1 calc(100vh - var(--app-bar-height));
+        overflow-y: auto;
+    }
+}

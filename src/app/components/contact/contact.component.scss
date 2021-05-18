@@ -8,6 +8,9 @@
     &:hover {
         background-color: var(--color-bg-emphasized-2);
     }
+    &.active {
+        background-color: var(--color-primary);
+    }
 
     .avatar {
         border-radius: 50%;

@@ -1,1 +1,2 @@
-<app-contact *ngFor="let contact of contacts$ | async" [user]="contact"></app-contact>
+<app-contact *ngFor="let contact of contacts$ | async" [user]="contact"
+    [isActive]="(selectedContact$ | async)?.id === contact.id"></app-contact>

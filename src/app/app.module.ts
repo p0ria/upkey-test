@@ -8,6 +8,10 @@ import { ContactListComponent } from './components/contact-list/contact-list.com
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MATERIAL_MODULES } from './modules/material.modules';
 import { ContactComponent } from './components/contact/contact.component';
+import { HttpClientModule } from '@angular/common/http';
+import { AppBarComponent } from './components/app-bar/app-bar.component';
+import { ContentListComponent } from './components/content-list/content-list.component';
+import { ContentComponent } from './components/content/content.component';
 
 @NgModule({
   declarations: [
@@ -16,9 +20,13 @@ import { ContactComponent } from './components/contact/contact.component';
     MainComponent,
     ContactListComponent,
     ContactComponent,
+    AppBarComponent,
+    ContentListComponent,
+    ContentComponent,
   ],
   imports: [
     BrowserModule,
+    HttpClientModule,
     StoreModule,
     BrowserAnimationsModule,
     ...MATERIAL_MODULES

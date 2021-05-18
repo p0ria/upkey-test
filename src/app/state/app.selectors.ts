@@ -4,7 +4,22 @@ import { createFeatureSelector, createSelector } from "@ngrx/store";
 
 export const selectAppState = createFeatureSelector<AppState>(APP_FEATURE_NAME)
 
+export const selectMe = createSelector(
+    selectAppState,
+    state => state.me
+)
+
 export const selectFriends = createSelector(
     selectAppState,
     state => state.friends
+)
+
+export const selectSelectedFriend = createSelector(
+    selectAppState,
+    state => state.selectedFriend
+)
+
+export const selectSelectedFriendContents = createSelector(
+    selectAppState,
+    state => state.selectedFriendContents
 )
