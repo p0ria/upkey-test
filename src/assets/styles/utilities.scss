@@ -1,0 +1,105 @@
+.p-4 {
+    padding: var(--spacing-base) !important;
+}
+.p-t-4 {
+    padding-top: var(--spacing-base) !important;
+}
+.p-b-4 {
+    padding-bottom: var(--spacing-base) !important;
+}
+.p-l-4 {
+    padding-left: var(--spacing-base) !important;
+}
+.p-r-4 {
+    padding-right: var(--spacing-base) !important;
+}
+.p-8 {
+    padding: calc(2 * var(--spacing-base)) !important;
+}
+.p-t-8 {
+    padding-top: calc(2 * var(--spacing-base)) !important;
+}
+.p-b-8 {
+    padding-bottom: calc(2 * var(--spacing-base)) !important;
+}
+.p-l-8 {
+    padding-left: calc(2 * var(--spacing-base)) !important;
+}
+.p-r-8 {
+    padding-right: calc(2 * var(--spacing-base)) !important;
+}
+.p-16 {
+    padding: calc(4 * var(--spacing-base)) !important;
+}
+.p-t-16 {
+    padding-top: calc(4 * var(--spacing-base)) !important;
+}
+.p-b-16 {
+    padding-bottom: calc(4 * var(--spacing-base)) !important;
+}
+.p-l-16 {
+    padding-left: calc(4 * var(--spacing-base)) !important;
+}
+.p-r-16 {
+    padding-right: calc(4 * var(--spacing-base)) !important;
+}
+.m-4 {
+    margin: var(--spacing-base) !important;
+}
+.m-t-4 {
+    margin-top: var(--spacing-base) !important;
+}
+.m-b-4 {
+    margin-bottom: var(--spacing-base) !important;
+}
+.m-l-4 {
+    margin-left: var(--spacing-base) !important;
+}
+.m-r-4 {
+    margin-right: var(--spacing-base) !important;
+}
+.m-8 {
+    margin: calc(2 * var(--spacing-base)) !important;
+}
+.m-t-8 {
+    margin-top: calc(2 * var(--spacing-base)) !important;
+}
+.m-b-8 {
+    margin-bottom: calc(2 * var(--spacing-base)) !important;
+}
+.m-l-8 {
+    margin-left: calc(2 * var(--spacing-base)) !important;
+}
+.m-r-8 {
+    margin-right: calc(2 * var(--spacing-base)) !important;
+}
+.m-16 {
+    margin: calc(4 * var(--spacing-base)) !important;
+}
+.m-t-16 {
+    margin-top: calc(4 * var(--spacing-base)) !important;
+}
+.m-b-16 {
+    margin-bottom: calc(4 * var(--spacing-base)) !important;
+}
+.m-l-16 {
+    margin-left: calc(4 * var(--spacing-base)) !important;
+}
+.m-r-16 {
+    margin-right: calc(4 * var(--spacing-base)) !important;
+}
+.flex {
+    display: flex !important;
+}
+.flex-row {
+    flex-direction: row !important;
+}
+.flex-col {
+    flex-direction: column !important;
+}
+.flex-1 {
+    flex: 1 1 auto !important;
+}
+.w-full {
+    width: 100% !important;
+}

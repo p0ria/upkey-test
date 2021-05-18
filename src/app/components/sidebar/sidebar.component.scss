@@ -1,0 +1,12 @@
+:host {
+    display: flex;
+    flex-direction: column;
+
+    .feeds {
+        display: flex;
+        border-bottom: 1px solid var(--color-border);
+        > button {
+            width: 100%;
+        }
+    }
+}
