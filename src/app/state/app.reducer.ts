@@ -1,4 +1,4 @@
-import { actionGeMeSuccess, actionGetMe, actionGetMeFailure, actionGetMeFriends, actionGetMeFriendsFailure, actionGetMeFriendsSuccess, actionSelectFriend, actionGetSelectedFriendContents, actionGetSelectedFriendContentsSuccess, actionGetSelectedFriendContentsFailure, actionToggleContentLike, actionToggleContentLikeSuccess, actionToggleContentLikeFailure } from './app.actions';
+import { actionGeMeSuccess, actionGetMe, actionGetMeFailure, actionGetMeFriends, actionGetMeFriendsFailure, actionGetMeFriendsSuccess, actionSelectFriend, actionGetSelectedFriendContents, actionGetSelectedFriendContentsSuccess, actionGetSelectedFriendContentsFailure, actionToggleContentLike, actionToggleContentLikeSuccess, actionToggleContentLikeFailure, actionChangePage, actionShowFeeds } from './app.actions';
 import { createReducer, Action, on } from "@ngrx/store"
 import { AppState, initialState } from "./app.state"
 
@@ -45,7 +45,8 @@ const reducer = createReducer<AppState, Action>(
     on(actionSelectFriend, (state, action) => {
         return ({
             ...state,
-            selectedFriend: action.friend
+            selectedFriend: action.friend,
+            page: 'contents'
         })
     }),
     on(actionGetSelectedFriendContents, (state, action) => {
@@ -71,20 +72,27 @@ const reducer = createReducer<AppState, Action>(
     on(actionToggleContentLike, (state, action) => {
         return ({
             ...state,
-            toggleContentLikeLoadingId: action.content.id
+            toggleContentLikePendingId: action.content.id
         })
     }),
     on(actionToggleContentLikeSuccess, (state, action) => {
         return ({
             ...state,
             selectedFriendContents: state.selectedFriendContents.map(c => c.id === action.content.id ? action.content : c),
-            toggleContentLikeLoadingId: null
+            toggleContentLikePendingId: null
         })
     }),
     on(actionToggleContentLikeFailure, (state, action) => {
         return ({
             ...state,
-            toggleContentLikeLoadingId: null
+            toggleContentLikePendingId: null
+        })
+    }),
+    on(actionShowFeeds, (state, action) => {
+        return ({
+            ...state,
+            page: 'feeds',
+            selectedFriend: null
         })
     })
 )

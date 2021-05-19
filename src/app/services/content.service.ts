@@ -20,7 +20,6 @@ export class ContentService {
 
     toggleLike(content: Content, userId: Id): Observable<Content> {
         const url = `${environment.baseUrl}/contents/${content.id}`;
-        console.log(url, content.id)
         let likes = [...content.likes];
         if (likes.includes(userId)) {
             likes = likes.filter(like => like !== userId)

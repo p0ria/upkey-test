@@ -1,1 +1,7 @@
-<app-content *ngFor="let content of contents$ | async" [content]="content"></app-content>
+<ng-container *ngIf="!(isContentsLoading$ | async); else loading">
+    <app-content *ngFor="let content of contents$ | async" [content]="content"></app-content>
+</ng-container>
+<ng-template #loading>
+    <ngx-skeleton width="400px" height="300px" margin="0 0 8px 0"></ngx-skeleton>
+    <ngx-skeleton width="400px" height="300px" margin="0 0 8px 0"></ngx-skeleton>
+</ng-template>

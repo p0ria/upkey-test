@@ -2,7 +2,7 @@ import { Injectable } from "@angular/core";
 import { Actions, createEffect, ofType } from "@ngrx/effects";
 import { select, Store } from "@ngrx/store";
 import { forkJoin, of } from 'rxjs';
-import { catchError, map, mergeMap, withLatestFrom } from 'rxjs/operators';
+import { catchError, map, mergeMap, switchMap, withLatestFrom } from 'rxjs/operators';
 import { selectMe } from 'src/app/state/app.selectors';
 import { UserService } from '../services/user.service';
 import { ContentService } from './../services/content.service';
@@ -48,7 +48,7 @@ export class AppEffects {
         () => this.actions$.pipe(
             ofType(actionGetSelectedFriendContents),
             withLatestFrom(this.store.pipe(select(selectSelectedFriend))),
-            mergeMap(([_, selectedFriend]) => selectedFriend && selectedFriend.contents && selectedFriend.contents.length ?
+            switchMap(([_, selectedFriend]) => selectedFriend && selectedFriend.contents && selectedFriend.contents.length ?
                 forkJoin(selectedFriend.contents.map(c => this.contentService.getContentById(c))) : of([])),
             map(contents => actionGetSelectedFriendContentsSuccess({ contents }))
         )
@@ -59,7 +59,11 @@ export class AppEffects {
             ofType(actionToggleContentLike),
             withLatestFrom(this.store.pipe(select(selectMe))),
             mergeMap(([{ content }, me]) => this.contentService.toggleLike(content, me.id).pipe(
-                map(content => actionToggleContentLikeSuccess({ content })),
+                map(content => {
+                    if (content.likes.includes(me.id)) console.log("LIKED")
+                    else console.log("UNLIKED")
+                    return actionToggleContentLikeSuccess({ content });
+                }),
                 catchError(error => of(actionGetMeFriendsFailure({ error })))
             ))
         )

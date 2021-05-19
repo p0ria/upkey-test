@@ -12,6 +12,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { AppBarComponent } from './components/app-bar/app-bar.component';
 import { ContentListComponent } from './components/content-list/content-list.component';
 import { ContentComponent } from './components/content/content.component';
+import { NgxSkeletonModule } from 'ngx-skeleton';
 
 @NgModule({
   declarations: [
@@ -29,6 +30,7 @@ import { ContentComponent } from './components/content/content.component';
     HttpClientModule,
     StoreModule,
     BrowserAnimationsModule,
+    NgxSkeletonModule,
     ...MATERIAL_MODULES
   ],
   providers: [],

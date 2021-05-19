@@ -1,3 +1,4 @@
+import { PageType } from './../types/page.type';
 import { createAction, props } from "@ngrx/store";
 import { Content } from 'src/app/types/content.type';
 import { User } from 'src/app/types/user.type';
@@ -62,4 +63,8 @@ export const actionToggleContentLikeSuccess = createAction(
 export const actionToggleContentLikeFailure = createAction(
     '[APP] Toggle Content Like Failure',
     props<{ content: Content }>()
+)
+
+export const actionShowFeeds = createAction(
+    '[APP] Show Feeds'
 )

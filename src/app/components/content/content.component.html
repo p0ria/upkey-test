@@ -2,8 +2,8 @@
 <div class="content">
     <div class="info">
         <h6 class="title">{{content.title}}</h6>
-        <button class="like" [class.active]="isLiked$ | async" mat-icon-button aria-label="like button"
-            (click)="toggleLike()">
+        <button class="like" [class.active]="isLiked$ | async" [disabled]="isLikePending$ | async" mat-icon-button
+            aria-label="like button" (click)="toggleLike()">
             <mat-icon><span class="material-icons-outlined">
                     favorite
                 </span></mat-icon>

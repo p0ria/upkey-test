@@ -1,3 +1,4 @@
+import { PageType } from './../types/page.type';
 import { Id } from './../types/id.type';
 import { Content } from "../types/content.type";
 import { Feed } from "../types/feed.type";
@@ -14,7 +15,8 @@ export interface AppState {
     meIsLoading: boolean
     friendsIsLoading: boolean
     selectedFriendContentsIsLoading: boolean
-    toggleContentLikeLoadingId: Id | null
+    toggleContentLikePendingId: Id | null
+    page: PageType | null
 }
 
 export const initialState: AppState = {
@@ -26,5 +28,6 @@ export const initialState: AppState = {
     meIsLoading: false,
     friendsIsLoading: false,
     selectedFriendContentsIsLoading: false,
-    toggleContentLikeLoadingId: null
+    toggleContentLikePendingId: null,
+    page: null
 }

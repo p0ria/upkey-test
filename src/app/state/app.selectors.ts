@@ -23,3 +23,23 @@ export const selectSelectedFriendContents = createSelector(
     selectAppState,
     state => state.selectedFriendContents
 )
+
+export const selectToggleContentLikePendingId = createSelector(
+    selectAppState,
+    state => state.toggleContentLikePendingId
+)
+
+export const selectSelectedFriendContentsIsLoading = createSelector(
+    selectAppState,
+    state => state.selectedFriendContentsIsLoading
+)
+
+export const selectFriendsIsLoading = createSelector(
+    selectAppState,
+    state => state.friendsIsLoading
+)
+
+export const selectPage = createSelector(
+    selectAppState,
+    state => state.page
+)
