@@ -1,0 +1,27 @@
+:host {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: calc(2 * var(--spacing-base)) calc(4 * var(--spacing-base));
+    border-bottom: 1px dashed var(--color-border);
+
+    ::ng-deep a {
+        text-decoration: none;
+        color: var(--color-primary);
+        opacity: 0.8;
+        &:hover {
+            opacity: 1;
+            text-decoration: underline;
+        }
+    }
+
+    .timestamp {
+        opacity: 0;
+    }
+
+    &:hover {
+        .timestamp {
+            opacity: 0.8;
+        }
+    }
+}

@@ -1,10 +1,10 @@
 :host {
     display: flex;
     flex-direction: column;
+    background-color: rgba(226, 244, 255, 0.1);
 
     .feeds {
         display: flex;
-        border-bottom: 1px solid var(--color-border);
         > button {
             width: 100%;
         }

@@ -1,0 +1,13 @@
+:host {
+    display: flex;
+    min-height: 100vh;
+
+    app-sidebar {
+        flex: 0 0 200px;
+    }
+
+    app-main {
+        flex: 1;
+        background-color: rgba(0, 0, 0, 0.01);
+    }
+}

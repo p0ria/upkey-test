@@ -34,6 +34,11 @@ export const selectSelectedFriendContentsIsLoading = createSelector(
     state => state.selectedFriendContentsIsLoading
 )
 
+export const selectMeIsLoading = createSelector(
+    selectAppState,
+    state => state.meIsLoading
+)
+
 export const selectFriendsIsLoading = createSelector(
     selectAppState,
     state => state.friendsIsLoading
@@ -42,4 +47,14 @@ export const selectFriendsIsLoading = createSelector(
 export const selectPage = createSelector(
     selectAppState,
     state => state.page
+)
+
+export const selectFeeds = createSelector(
+    selectAppState,
+    state => state.feeds
+)
+
+export const selectFeedsIsLoading = createSelector(
+    selectAppState,
+    state => state.feedsIsLoading
 )

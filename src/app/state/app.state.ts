@@ -7,19 +7,21 @@ import { User } from "../types/user.type";
 export const APP_FEATURE_NAME = 'app';
 
 export interface AppState {
+    page: PageType | null
     me: Partial<User>
     friends: Partial<User>[]
     feeds: Partial<Feed>[]
-    selectedFriend: User
+    selectedFriend: Partial<User>
     selectedFriendContents: Partial<Content>[]
     meIsLoading: boolean
     friendsIsLoading: boolean
     selectedFriendContentsIsLoading: boolean
     toggleContentLikePendingId: Id | null
-    page: PageType | null
+    feedsIsLoading: boolean
 }
 
 export const initialState: AppState = {
+    page: null,
     me: null,
     friends: [],
     feeds: [],
@@ -29,5 +31,5 @@ export const initialState: AppState = {
     friendsIsLoading: false,
     selectedFriendContentsIsLoading: false,
     toggleContentLikePendingId: null,
-    page: null
+    feedsIsLoading: false
 }

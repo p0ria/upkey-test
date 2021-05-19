@@ -5,7 +5,7 @@
     "ng": "ng",
     "start": "npm-run-all -p json-server ng-serve",
     "ng-serve": "ng serve",
-    "json-server": "json-server --watch db.json -d 500",
+    "json-server": "json-server --watch db.json -d 300",
     "build": "ng build",
     "test": "ng test",
     "lint": "ng lint",

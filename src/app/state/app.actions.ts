@@ -1,3 +1,4 @@
+import { Feed } from './../types/feed.type';
 import { PageType } from './../types/page.type';
 import { createAction, props } from "@ngrx/store";
 import { Content } from 'src/app/types/content.type';
@@ -33,7 +34,7 @@ export const actionGetMeFriendsFailure = createAction(
 
 export const actionSelectFriend = createAction(
     '[APP] Select Friend',
-    props<{ friend: User }>()
+    props<{ friendName: string }>()
 )
 
 export const actionGetSelectedFriendContents = createAction(
@@ -65,6 +66,11 @@ export const actionToggleContentLikeFailure = createAction(
     props<{ content: Content }>()
 )
 
-export const actionShowFeeds = createAction(
-    '[APP] Show Feeds'
+export const actionGetFeeds = createAction(
+    '[APP] Get Feeds'
+)
+
+export const actionGetFeedsSuccess = createAction(
+    '[APP] Get Feeds Success',
+    props<{ feeds: Feed[] }>()
 )

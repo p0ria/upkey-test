@@ -1,5 +1,6 @@
 <div class="feeds p-8 m-b-16">
-    <button mat-button color="primary" (click)="showFeeds()">Feeds</button>
+    <button mat-stroked-button color="primary" [loading]="isFeedsLoading$| async"
+        [disabled]="(isMeLoading$ | async) || (isFriendsLoading$ | async)" (click)="showFeeds()">Feeds</button>
 </div>
 <ng-container *ngIf="!(isFriendsLoading$ | async); else loading">
     <app-contact-list></app-contact-list>

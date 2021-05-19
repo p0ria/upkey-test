@@ -1,3 +1,4 @@
+import { mergeMap } from 'rxjs/operators';
 import { environment } from 'src/environments/environment';
 import { User } from 'src/app/types/user.type';
 import { Injectable } from "@angular/core";
@@ -15,7 +16,9 @@ export class UserService {
         const url = `${environment.baseUrl}/me`;
         return this.http.get<User>(url, {
             headers: { 'Content-Type': 'application/json' }
-        });
+        }).pipe(
+            mergeMap(({ id }) => this.getUserById(id))
+        );
     }
 
     getUserById(id: Id): Observable<User> {

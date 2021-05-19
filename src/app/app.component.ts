@@ -1,6 +1,4 @@
-import { actionGetMe } from './state/app.actions';
 import { Component } from '@angular/core';
-import { Store } from '@ngrx/store';
 
 @Component({
   selector: 'app-root',
@@ -9,8 +7,4 @@ import { Store } from '@ngrx/store';
 })
 export class AppComponent {
   title = 'upkey-test';
-
-  constructor(private store: Store) {
-    this.store.dispatch(actionGetMe());
-  }
 }

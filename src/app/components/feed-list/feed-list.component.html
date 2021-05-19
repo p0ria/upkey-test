@@ -1,0 +1,11 @@
+<ng-container *ngIf="!(isFeedsLoading$ | async); else loading">
+    <app-feed *ngFor="let feed of (feeds$ | async)" [feed]="feed"></app-feed>
+</ng-container>
+<ng-template #loading>
+    <ngx-skeleton width="100%" height="30px" margin="0 0 8px 0"></ngx-skeleton>
+    <ngx-skeleton width="100%" height="30px" margin="0 0 8px 0"></ngx-skeleton>
+    <ngx-skeleton width="100%" height="30px" margin="0 0 8px 0"></ngx-skeleton>
+    <ngx-skeleton width="100%" height="30px" margin="0 0 8px 0"></ngx-skeleton>
+    <ngx-skeleton width="100%" height="30px" margin="0 0 8px 0"></ngx-skeleton>
+    <ngx-skeleton width="100%" height="30px" margin="0 0 8px 0"></ngx-skeleton>
+</ng-template>

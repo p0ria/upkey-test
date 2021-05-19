@@ -7,5 +7,5 @@ export interface User {
     imageUrl: string
     contents: Id[]
     friends: Id[]
-    feeds: Feed[]
+    feeds: []
 }

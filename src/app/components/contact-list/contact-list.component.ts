@@ -11,7 +11,7 @@ import { User } from 'src/app/types/user.type';
 })
 export class ContactListComponent implements OnInit {
   contacts$: Observable<Partial<User>[]>;
-  selectedContact$: Observable<User>;
+  selectedContact$: Observable<Partial<User>>;
   constructor(private store: Store) { }
 
   ngOnInit(): void {

@@ -1,6 +1,6 @@
-import { actionGeMeSuccess, actionGetMe, actionGetMeFailure, actionGetMeFriends, actionGetMeFriendsFailure, actionGetMeFriendsSuccess, actionSelectFriend, actionGetSelectedFriendContents, actionGetSelectedFriendContentsSuccess, actionGetSelectedFriendContentsFailure, actionToggleContentLike, actionToggleContentLikeSuccess, actionToggleContentLikeFailure, actionChangePage, actionShowFeeds } from './app.actions';
-import { createReducer, Action, on } from "@ngrx/store"
-import { AppState, initialState } from "./app.state"
+import { Action, createReducer, on } from "@ngrx/store";
+import { actionGeMeSuccess, actionGetMe, actionGetMeFailure, actionGetMeFriends, actionGetMeFriendsFailure, actionGetMeFriendsSuccess, actionGetSelectedFriendContents, actionGetSelectedFriendContentsFailure, actionGetSelectedFriendContentsSuccess, actionSelectFriend, actionToggleContentLike, actionToggleContentLikeFailure, actionToggleContentLikeSuccess, actionGetFeeds, actionGetFeedsSuccess } from './app.actions';
+import { AppState, initialState } from "./app.state";
 
 const reducer = createReducer<AppState, Action>(
     initialState,
@@ -45,7 +45,7 @@ const reducer = createReducer<AppState, Action>(
     on(actionSelectFriend, (state, action) => {
         return ({
             ...state,
-            selectedFriend: action.friend,
+            selectedFriend: state.friends.find(f => f.name === action.friendName),
             page: 'contents'
         })
     }),
@@ -88,11 +88,19 @@ const reducer = createReducer<AppState, Action>(
             toggleContentLikePendingId: null
         })
     }),
-    on(actionShowFeeds, (state, action) => {
+    on(actionGetFeeds, (state, action) => {
         return ({
             ...state,
             page: 'feeds',
-            selectedFriend: null
+            feedsIsLoading: true,
+            selectedFriend: null,
+        })
+    }),
+    on(actionGetFeedsSuccess, (state, action) => {
+        return ({
+            ...state,
+            feeds: action.feeds,
+            feedsIsLoading: false
         })
     })
 )

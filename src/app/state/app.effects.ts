@@ -1,22 +1,45 @@
 import { Injectable } from "@angular/core";
-import { Actions, createEffect, ofType } from "@ngrx/effects";
+import { NavigationEnd, Router } from "@angular/router";
+import { Actions, createEffect, ofType, ROOT_EFFECTS_INIT } from "@ngrx/effects";
 import { select, Store } from "@ngrx/store";
-import { forkJoin, of } from 'rxjs';
-import { catchError, map, mergeMap, switchMap, withLatestFrom } from 'rxjs/operators';
+import { EMPTY, forkJoin, of, Observable } from 'rxjs';
+import { catchError, debounceTime, filter, first, map, mergeMap, switchMap, tap, withLatestFrom } from 'rxjs/operators';
 import { selectMe } from 'src/app/state/app.selectors';
 import { UserService } from '../services/user.service';
+import { Feed } from "../types/feed.type";
+import { User } from "../types/user.type";
 import { ContentService } from './../services/content.service';
-import { actionGeMeSuccess, actionGetMe, actionGetMeFailure, actionGetMeFriends, actionGetMeFriendsFailure, actionGetMeFriendsSuccess, actionGetSelectedFriendContents, actionGetSelectedFriendContentsSuccess, actionSelectFriend, actionToggleContentLike, actionToggleContentLikeSuccess } from './app.actions';
-import { selectSelectedFriend } from './app.selectors';
+import { FeedService } from './../services/feeed.service';
+import { actionGeMeSuccess, actionGetFeeds, actionGetFeedsSuccess, actionGetMe, actionGetMeFailure, actionGetMeFriends, actionGetMeFriendsFailure, actionGetMeFriendsSuccess, actionGetSelectedFriendContents, actionGetSelectedFriendContentsSuccess, actionSelectFriend, actionToggleContentLike, actionToggleContentLikeSuccess } from './app.actions';
+import { selectFriends, selectSelectedFriend } from './app.selectors';
 
 @Injectable()
 export class AppEffects {
     constructor(
         private actions$: Actions,
         private store: Store,
+        private router: Router,
         private userService: UserService,
-        private contentService: ContentService
+        private contentService: ContentService,
+        private feedService: FeedService
     ) { }
+
+    init$ = createEffect(
+        () => this.actions$.pipe(
+            ofType(ROOT_EFFECTS_INIT),
+            mergeMap(_ => [actionGetMe()])
+        )
+    )
+
+    watchNavigation$ = createEffect(
+        () => this.router.events.pipe(
+            filter(e => e instanceof NavigationEnd),
+            debounceTime(200),
+            map(_ => this.router.routerState.root.snapshot.queryParams),
+            filter(({ friend }) => !!friend),
+            map(({ friend }) => actionSelectFriend({ friendName: friend }))
+        )
+    )
 
     getMe$ = createEffect(
         () => this.actions$.pipe(
@@ -66,6 +89,24 @@ export class AppEffects {
                 }),
                 catchError(error => of(actionGetMeFriendsFailure({ error })))
             ))
+        )
+    )
+
+    getFeeds$ = createEffect(
+        () => this.actions$.pipe(
+            ofType(actionGetFeeds),
+            tap(_ => this.router.navigate(['home'])),
+            switchMap(_ => forkJoin([
+                this.store.pipe(select(selectMe), first()),
+                this.store.pipe(select(selectFriends), first())
+            ])),
+            switchMap(([me, friends]: [User, any]) => {
+                let feeds$: Observable<Feed>[] = []
+                feeds$.push(...me.feeds.map(f => this.feedService.getFeedById(f)));
+                friends.forEach(friend => friend.feeds && feeds$.push(...friend.feeds.map(f => this.feedService.getFeedById(f))));
+                return forkJoin(feeds$);
+            }),
+            map(feeds => actionGetFeedsSuccess({ feeds }))
         )
     )
 }
