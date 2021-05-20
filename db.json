@@ -7,34 +7,20 @@
       "id": 1,
       "name": "Pooria",
       "imageUrl": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTY9PV2aJYIlDrKugo5ytCvB_HrS0GK8uPgtQKji694wM_WxpNolSoTk-1vI3_KAatPH-0&usqp=CAU",
-      "friends": [
-        2,
-        3,
-        4,
-        5
-      ],
-      "feeds": [
-        1,
-        3,
-        4
-      ]
+      "friends": [2, 3, 4, 5],
+      "feeds": [1]
     },
     {
       "id": 2,
       "name": "Reza",
       "imageUrl": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT2DE2TVQ8eRySV8DOrNa5Dkq68iN3G-HSth28wqNqPSVl6eovC5rOZZj7oLfTzU_9scK0&usqp=CAU",
-      "contents": [
-        1,
-        2
-      ]
+      "contents": [1, 2]
     },
     {
       "id": 3,
       "name": "Ali",
       "imageUrl": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTOsaxjME8aofG5EfKJ342iuRBXuwwueCXNue2p-r9_SOuHPYIzQQ8sGquAaI1LZAcDGQo&usqp=CAU",
-      "contents": [
-        3
-      ]
+      "contents": [3]
     },
     {
       "id": 4,
@@ -45,9 +31,7 @@
       "id": 5,
       "name": "Nina",
       "imageUrl": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRKu4HOKBegy0kgSISuUU-c_fQlwyP3Z_1UaTy8cGVpU-Nil6Jc5-bU-Xt6mSSXIxY5cxg&usqp=CAU",
-      "feeds": [
-        2
-      ]
+      "feeds": [2]
     }
   ],
   "contents": [
@@ -56,30 +40,21 @@
       "title": "A day in jungle",
       "description": "A Day in the Jungle. It was one of those hot days; so hot that the animals in the jungle could barely move. They all headed down to the watering hole.",
       "imageUrl": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRdrIkvcAPw6-1PtxJi6iuEO8kaHiqEl-uW7Yk7VwuLX_9e_cyMgb0O94qWM1fS4bDVJGE&usqp=CAU",
-      "likes": [
-        3,
-        1
-      ]
+      "likes": [3]
     },
     {
       "id": 2,
       "title": "Mountain climbing",
       "description": "Climbing a mountain would be a daunting workout to most, but what if the mountain is the floor? That's the concept behind mountain climbers. Performed from a plank position, you'll alternate bringing one knee to your chest, then back out again, speeding up each time until you're running against the floor.",
       "imageUrl": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS5QTr3xQHMYoE4f5hyVN2h6f9mFMpXlQEt2bHUxH3IbdXhdUc5ZMpOycr4QhucX8wfqgA&usqp=CAU",
-      "likes": [
-        2,
-        5
-      ]
+      "likes": [2, 5, 1]
     },
     {
       "id": 3,
       "title": "Sunday surfing",
       "description": "A surfer rides a wave at Huntington Beach, California. There are four major types of waves. Rolling waves (1) are the most familiar waves, and the type most surfers prefer because they break in a stable pattern. Dumping waves (2) are more unpredictable and are usually limited to experienced surfers. Surging waves (3) are the most dangerous and are most often present on steep or rocky shores. Standing waves (4) are also called stationary waves because they are constant and do not lose strength.",
       "imageUrl": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQGZWRhlM-omxN8CWXttGXRW2qTMp8SNeN3xg&usqp=CAU",
-      "likes": [
-        4,
-        1
-      ]
+      "likes": [4, 1]
     }
   ],
   "feeds": [
@@ -92,16 +67,6 @@
       "id": 2,
       "html": "<a href='?friend=Nina'>Nina</a> liked <a href='?friend=Ali'>Ali</a> photo",
       "timestamp": 1621451351
-    },
-    {
-      "html": "I</> liked <a href='?friend=Reza'>Reza</a> photo",
-      "timestamp": 1621484039748,
-      "id": 3
-    },
-    {
-      "html": "I</> Unliked <a href='?friend=Reza'>Reza</a> photo",
-      "timestamp": 1621484179343,
-      "id": 4
     }
   ]
 }

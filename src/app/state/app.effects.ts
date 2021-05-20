@@ -91,8 +91,8 @@ export class AppEffects {
                     return [
                         actionToggleContentLikeSuccess({ content }), actionAddFeed({
                             html: liked ?
-                                `I</> liked <a href='?friend=${friend.name}'>${friend.name}</a> photo` :
-                                `I</> Unliked <a href='?friend=${friend.name}'>${friend.name}</a> photo`
+                                `I liked <a href='?friend=${friend.name}'>${friend.name}</a> <i>${content.title}</i> photo` :
+                                `I Unliked <a href='?friend=${friend.name}'>${friend.name}</a> <i>${content.title}</i> photo`
                         })]
                 }),
                 catchError(error => of(actionGetMeFriendsFailure({ error })))
