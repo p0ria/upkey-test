@@ -2,16 +2,16 @@ import { Injectable } from "@angular/core";
 import { NavigationEnd, Router } from "@angular/router";
 import { Actions, createEffect, ofType, ROOT_EFFECTS_INIT } from "@ngrx/effects";
 import { select, Store } from "@ngrx/store";
-import { EMPTY, forkJoin, of, Observable } from 'rxjs';
+import { forkJoin, Observable, of } from 'rxjs';
 import { catchError, debounceTime, filter, first, map, mergeMap, switchMap, tap, withLatestFrom } from 'rxjs/operators';
-import { selectMe } from 'src/app/state/app.selectors';
+import { selectFriends, selectSelectedFriend } from 'src/app/state/app.selectors';
 import { UserService } from '../services/user.service';
 import { Feed } from "../types/feed.type";
 import { User } from "../types/user.type";
 import { ContentService } from './../services/content.service';
 import { FeedService } from './../services/feeed.service';
-import { actionGeMeSuccess, actionGetFeeds, actionGetFeedsSuccess, actionGetMe, actionGetMeFailure, actionGetMeFriends, actionGetMeFriendsFailure, actionGetMeFriendsSuccess, actionGetSelectedFriendContents, actionGetSelectedFriendContentsSuccess, actionSelectFriend, actionToggleContentLike, actionToggleContentLikeSuccess } from './app.actions';
-import { selectFriends, selectSelectedFriend } from './app.selectors';
+import { actionAddFeed, actionAddFeedFailure, actionAddFeedSuccess, actionGeMeSuccess, actionGetFeeds, actionGetFeedsSuccess, actionGetMe, actionGetMeFailure, actionGetMeFriends, actionGetMeFriendsFailure, actionGetMeFriendsSuccess, actionGetSelectedFriendContents, actionGetSelectedFriendContentsSuccess, actionSelectFriend, actionToggleContentLike, actionToggleContentLikeSuccess } from './app.actions';
+import { selectMe } from './app.selectors';
 
 @Injectable()
 export class AppEffects {
@@ -80,12 +80,20 @@ export class AppEffects {
     toggleContentLike$ = createEffect(
         () => this.actions$.pipe(
             ofType(actionToggleContentLike),
-            withLatestFrom(this.store.pipe(select(selectMe))),
-            mergeMap(([{ content }, me]) => this.contentService.toggleLike(content, me.id).pipe(
-                map(content => {
-                    if (content.likes.includes(me.id)) console.log("LIKED")
-                    else console.log("UNLIKED")
-                    return actionToggleContentLikeSuccess({ content });
+            switchMap(action => forkJoin([
+                of(action),
+                this.store.pipe(select(selectMe), first()),
+                this.store.pipe(select(selectSelectedFriend), first())
+            ])),
+            mergeMap(([{ content }, me, friend]) => this.contentService.toggleLike(content, me.id).pipe(
+                mergeMap(content => {
+                    const liked = content.likes.includes(me.id);
+                    return [
+                        actionToggleContentLikeSuccess({ content }), actionAddFeed({
+                            html: liked ?
+                                `I</> liked <a href='?friend=${friend.name}'>${friend.name}</a> photo` :
+                                `I</> Unliked <a href='?friend=${friend.name}'>${friend.name}</a> photo`
+                        })]
                 }),
                 catchError(error => of(actionGetMeFriendsFailure({ error })))
             ))
@@ -107,6 +115,17 @@ export class AppEffects {
                 return forkJoin(feeds$);
             }),
             map(feeds => actionGetFeedsSuccess({ feeds }))
+        )
+    )
+
+    addFeed$ = createEffect(
+        () => this.actions$.pipe(
+            ofType(actionAddFeed),
+            withLatestFrom(this.store.pipe(select(selectMe))),
+            mergeMap(([action, me]) => this.feedService.addFeed(me, action.html).pipe(
+                map(({ user, feed }) => actionAddFeedSuccess({ user, feed })),
+                catchError(error => of(actionAddFeedFailure({ error })))
+            ))
         )
     )
 }

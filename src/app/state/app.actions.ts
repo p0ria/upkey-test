@@ -74,3 +74,18 @@ export const actionGetFeedsSuccess = createAction(
     '[APP] Get Feeds Success',
     props<{ feeds: Feed[] }>()
 )
+
+export const actionAddFeed = createAction(
+    '[APP] Add Feed',
+    props<{ html: string }>()
+)
+
+export const actionAddFeedSuccess = createAction(
+    '[APP] Add Feed Success',
+    props<{ user: User, feed: Feed }>()
+)
+
+export const actionAddFeedFailure = createAction(
+    '[APP] Add Feed Failure',
+    props<{ error: any }>()
+)

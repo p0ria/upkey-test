@@ -1,5 +1,5 @@
 import { Action, createReducer, on } from "@ngrx/store";
-import { actionGeMeSuccess, actionGetMe, actionGetMeFailure, actionGetMeFriends, actionGetMeFriendsFailure, actionGetMeFriendsSuccess, actionGetSelectedFriendContents, actionGetSelectedFriendContentsFailure, actionGetSelectedFriendContentsSuccess, actionSelectFriend, actionToggleContentLike, actionToggleContentLikeFailure, actionToggleContentLikeSuccess, actionGetFeeds, actionGetFeedsSuccess } from './app.actions';
+import { actionGeMeSuccess, actionGetMe, actionGetMeFailure, actionGetMeFriends, actionGetMeFriendsFailure, actionGetMeFriendsSuccess, actionGetSelectedFriendContents, actionGetSelectedFriendContentsFailure, actionGetSelectedFriendContentsSuccess, actionSelectFriend, actionToggleContentLike, actionToggleContentLikeFailure, actionToggleContentLikeSuccess, actionGetFeeds, actionGetFeedsSuccess, actionAddFeedSuccess } from './app.actions';
 import { AppState, initialState } from "./app.state";
 
 const reducer = createReducer<AppState, Action>(
@@ -99,8 +99,15 @@ const reducer = createReducer<AppState, Action>(
     on(actionGetFeedsSuccess, (state, action) => {
         return ({
             ...state,
-            feeds: action.feeds,
+            feeds: [...action.feeds].sort((a, b) => b.timestamp - a.timestamp),
             feedsIsLoading: false
+        })
+    }),
+    on(actionAddFeedSuccess, (state, action) => {
+        return ({
+            ...state,
+            me: action.user,
+            feeds: [action.feed, ...state.feeds]
         })
     })
 )
